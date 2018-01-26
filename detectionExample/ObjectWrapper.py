@@ -14,7 +14,7 @@ class BBox(object):
         self.objType = bbox.objType
         self.name = bbox.name
 
-class ObjectWrapper():
+class ObjectWrapper():  
     mvnc.SetGlobalOption(mvnc.GlobalOption.LOG_LEVEL, 2)
     devices = mvnc.EnumerateDevices()
     devNum = len(devices)

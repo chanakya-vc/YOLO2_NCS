@@ -21,6 +21,7 @@ if __name__ == '__main__':
 
     detector = ObjectWrapper(network_blob)
     stickNum = ObjectWrapper.devNum
+    object_list=[]
 
     if sys.argv[1] == '--image':
         # image preprocess
@@ -40,7 +41,7 @@ if __name__ == '__main__':
         cv2.waitKey(10000)
     elif sys.argv[1] == '--video':
         # video preprocess
-        cap = cv2.VideoCapture(videofile)
+        cap = cv2.VideoCapture(0)
         fps = 0.0
         while cap.isOpened():
             start = time.time()
@@ -56,6 +57,7 @@ if __name__ == '__main__':
                     if i not in results:
                         results[i] = tmp[i]
                     imdraw = Visualize(imArr[i], results[i])
+                    IOU(results[i],object_list)
                     fpsImg = cv2.putText(imdraw, "%.2ffps" % fps, (70, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
                     cv2.imshow('Demo', fpsImg)
                 end = time.time()
